@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node -r dotenv/config -r ts-node/register src/main.ts",
-    "dev": "nodemon --watch src --ext ts --exec ts-node -r dotenv/config src/main.ts"
+    "dev": "nodemon --watch src --ext ts --exec ts-node -r dotenv/config src/main.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "migration:generate": "npm run typeorm -- --dataSource src/config/orm.config.ts migration:generate ./database/migrations/$npm_config_name",
+    "migration:run": "npm run typeorm migration:run -- --dataSource src/config/orm.config.ts",
+    "migration:revert": "npm run typeorm migration:revert -- --dataSource src/config/orm.config.ts"
   },
   "keywords": [],
   "author": "",
